@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Source+Sans+Pro:wght@400;600;700&display=swap");
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+
+
+.sidebar {
+  width: 263px;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f1f2f7;
+}
+
+.logo {
+  color: #5a67ba;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+}
+
+.menu-section,
+.others-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.menu-header {
+  color: #082431;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 5px;
+  color: #273240;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: rgba(90, 106, 207, 0.1);
+}
+
+.menu-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+
+.nav-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  color: #082431;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+  opacity: 0.6;
+  border-radius: 5px;
+  margin-bottom: 8px;
+}
+
+.nav-icon {
+  color: #a6abc8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.nav-label {
+  color: #273240;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 20px;
+  padding-right: 45px;
+  padding-bottom: 20px;
+  padding-left: 45px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  padding-right: 0;
+  padding-bottom: 15px;
+  padding-left: 0;
+  border-bottom: 1px solid #c8cbd9;
+}
+
+.page-title {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffe6cc;
+}
+
+.username {
+  color: #1f384c;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.notifications {
+  position: relative;
+  color: #b0c3cc;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 7.2px;
+  height: 7.2px;
+  border: 1.2px solid #fff;
+  border-radius: 50%;
+  background-color: #ec5252;
+}
+
+.content {
+  padding-top: 40px;
+  padding-right: 0;
+  padding-bottom: 40px;
+  padding-left: 0;
+}
+
+.description {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 40px;
+}
+
+.input-section {
+  backdrop-filter: blur(8px);
+  border: 2px solid #fff;
+  border-radius: 32px;
+  padding: 64px;
+  margin-bottom: 40px;
+}
+
+.input-container {
+  border-radius: 12px;
+  border: 2px solid #fff;
+  padding: 32px;
+}
+
+.input-label {
+  color: #727b7f;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.input-value {
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  border-radius: 4px;
+  color: #f1f2f7;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12px;
+  text-transform: uppercase;
+  background-color: #707fdd;
+  display: inline-block;
+}
+
+.ai-reply-section {
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.ai-reply-section .section-title {
+  color: #727b7f;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  opacity: 1;
+}
+
+.reply-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message-box {
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.message-label {
+  color: #727b7f;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.message-content {
+  color: #000;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+}
