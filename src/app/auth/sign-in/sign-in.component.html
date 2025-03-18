@@ -15,28 +15,16 @@
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <div class="form-field">
             <div class="input-container">
-              <img
-                class="field-icon"
-                src="assets/images/email-icon.svg"
-                alt="Email icon"
-              />
+              <img class="field-icon" src="assets/images/email-icon.svg" alt="Email icon" />
               <div class="input-wrapper">
                 <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  formControlName="email"
-                  placeholder="example@gmail.com"
-                />
+                <input type="email" id="email" formControlName="email" placeholder="example@gmail.com" />
               </div>
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 loginForm.get('email')?.invalid &&
                 loginForm.get('email')?.touched
-              "
-              class="error-message"
-            >
+              " class="error-message">
               Please enter a valid email address
             </div>
           </div>
@@ -45,40 +33,24 @@
             <div class="input-container">
               <div class="input-wrapper">
                 <label for="password">Password</label>
-                <input
-                  [type]="showPassword ? 'text' : 'password'"
-                  id="password"
-                  formControlName="password"
-                  placeholder="Enter your password"
-                />
+                <input [type]="showPassword ? 'text' : 'password'" id="password" formControlName="password"
+                  placeholder="Enter your password" />
               </div>
-              <img
-                class="field-icon password-toggle"
-                [src]="
+              <img class="field-icon password-toggle" [src]="
                   showPassword
                     ? 'assets/images/eye-open-icon.svg'
                     : 'assets/images/eye-closed-icon.svg'
-                "
-                alt="Toggle password visibility"
-                (click)="togglePasswordVisibility()"
-              />
+                " alt="Toggle password visibility" (click)="togglePasswordVisibility()" />
             </div>
-            <div
-              *ngIf="
+            <div *ngIf="
                 loginForm.get('password')?.invalid &&
                 loginForm.get('password')?.touched
-              "
-              class="error-message"
-            >
+              " class="error-message">
               Password is required
             </div>
           </div>
 
-          <button
-            type="submit"
-            class="login-button"
-            [disabled]="loginForm.invalid"
-          >
+          <button type="submit" class="login-button" [disabled]="loginForm.invalid">
             Login
           </button>
 

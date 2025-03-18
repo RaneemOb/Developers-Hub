@@ -1,0 +1,215 @@
+/* Main Container */
+.main-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 263px;
+  background-color: #f1f2f7;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  padding: 28px;
+  color: #5a67ba;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 11px;
+  letter-spacing: 0.5px;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.menu-header {
+  color: #082431;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 11px;
+  letter-spacing: 1px;
+  opacity: 0.5;
+}
+
+.menu-header.others {
+  margin-top: 20px;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 10px;
+  opacity: 0.6;
+  border-radius: 5px;
+}
+
+.menu-item.active {
+  background-color: rgba(90, 106, 207, 0.1);
+  opacity: 1;
+}
+
+.icon {
+  width: 20px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-text {
+  color: #273240;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+}
+
+.menu-item.active .menu-text {
+  color: #5a6acf;
+  font-weight: 500;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.header {
+  height: 69px;
+  border-bottom: 1px solid #c8cbd9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.page-title {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0.5px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffe6cc;
+}
+
+.username {
+  color: #1f384c;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Content Styles */
+.content {
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  overflow-y: auto;
+}
+
+.rooms-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.member-section {
+  border-top: 1px solid #c8cbd9;
+  padding-top: 40px;
+}
+
+.section-title {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 13px;
+  letter-spacing: 0.5px;
+}
+
+.rooms-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.room-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #f8f9fd;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.room-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e5e7f0;
+}
+
+.room-info {
+  flex: 1;
+}
+
+.room-name {
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.room-description {
+  color: #6b7280;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+.room-time {
+  color: #6b7280;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
