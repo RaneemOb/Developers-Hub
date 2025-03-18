@@ -1,0 +1,319 @@
+.my-invitations-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+}
+
+/* Main styles */
+
+/* Main Content Styles */
+.main-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  margin-left: 20px;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 20px;
+}
+
+.header-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.page-title {
+  color: rgba(0, 0, 0, 1);
+  font-size: 20px;
+  line-height: 1;
+  margin-top: 15px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-weight: 500;
+}
+
+.user-info {
+  display: flex;
+  align-items: stretch;
+  gap: 31px;
+  font-size: 12px;
+  color: rgba(31, 56, 76, 1);
+  line-height: 1;
+}
+
+.user-details {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  display: flex;
+  width: 32px;
+  flex-shrink: 0;
+  height: 32px;
+  background-color: #e0e0e0;
+}
+
+.user-name {
+  margin: auto 0;
+}
+
+.dropdown-icon {
+  aspect-ratio: 0.83;
+  object-fit: contain;
+  object-position: center;
+  width: 15px;
+  margin: auto 0;
+  flex-shrink: 0;
+}
+
+/* Invitations Container */
+.invitations-container {
+  margin-top: 60px;
+  margin-left: 13px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.invitations-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* Invitations List Column */
+.invitations-list-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 65%;
+}
+
+.invitation-list {
+  flex-grow: 1;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+.invitation-item {
+  border-radius: 12px;
+  display: flex;
+  min-height: 94px;
+  width: 100%;
+  padding: 19px 24px;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: stretch;
+  justify-content: center;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 29px;
+}
+
+.invitation-content {
+  display: flex;
+  width: 100%;
+  max-width: 530px;
+  align-items: center;
+  gap: 56px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.invitation-with-pic {
+  align-self: stretch;
+  display: flex;
+  min-width: 240px;
+  margin: auto 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.invitation-picture {
+  border-radius: 50%;
+  align-self: stretch;
+  display: flex;
+  margin: auto 0;
+  width: 56px;
+  flex-shrink: 0;
+  height: 56px;
+  background-color: #e0e0e0;
+}
+
+.invitation-details {
+  align-self: stretch;
+  min-width: 240px;
+  margin: auto 0;
+  width: 327px;
+}
+
+.room-name {
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+  font-weight: 500;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+.invited-by {
+  color: rgba(60, 60, 67, 1);
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 8px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+.invitation-time {
+  color: #666666;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.48px;
+  text-align: right;
+  align-self: stretch;
+  margin: auto 0;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 60px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+/* Actions Column */
+.actions-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 35%;
+  margin-left: 20px;
+}
+
+.actions-container {
+  margin-top: 29px;
+  width: 100%;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.25px;
+  line-height: 1;
+}
+
+.action-buttons {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.second-action {
+  margin-top: 102px;
+}
+
+.accept-button {
+  border-radius: 4px;
+  background-color: #6200ee;
+  display: flex;
+  min-height: 36px;
+  padding: 6px 6px 6px 8px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+}
+
+.accept-button img {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.accept-button span {
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  padding: 4px 8px 4px 6px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}
+
+.reject-button {
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  display: flex;
+  padding: 6px 6px 6px 8px;
+  color: #6200ee;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.reject-button span {
+  font-feature-settings:
+    "liga" off,
+    "clig" off;
+  align-self: stretch;
+  margin: auto 0;
+  padding: 4px 8px 4px 6px;
+  font-family:
+    "Poppins",
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+}

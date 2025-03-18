@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
+import { SidebarComponent } from "../shared/sidebar/sidebar.component";
 
 interface BotMessage {
   label: string;
@@ -9,7 +10,7 @@ interface BotMessage {
 @Component({
   selector: "app-open-source-suggestion-page",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SidebarComponent],
   templateUrl: "./open-source-suggestion-page.component.html",
   styleUrl: "./open-source-suggestion-page.component.css",
 })

@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { SidebarComponent } from "../shared/sidebar/sidebar.component";
 
 @Component({
   selector: "app-main",
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SidebarComponent],
   templateUrl: "./main.component.html",
   styleUrl: "./main.component.css",
 })

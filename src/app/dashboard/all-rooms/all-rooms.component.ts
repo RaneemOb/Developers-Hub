@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
+import { SidebarComponent } from "../shared/sidebar/sidebar.component";
 
 interface Room {
   id: number;
@@ -13,7 +14,7 @@ interface Room {
 @Component({
   selector: "app-all-rooms",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, SidebarComponent],
   templateUrl: "./all-rooms.component.html",
   styleUrl: "./all-rooms.component.css",
 })
