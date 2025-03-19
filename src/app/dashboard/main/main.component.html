@@ -1,161 +1,131 @@
 <div class="dashboard-container">
-  <!-- Sidebar -->
   <app-sidebar></app-sidebar>
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      <div>
-        <input type="text" placeholder="Search" class="search-input" />
+  <div class="dashboard-main">
+    <div class="search-header">
+      <div class="search-input">
+        <input type="text" placeholder="Search" [(ngModel)]="searchQuery" />
       </div>
       <div class="user-profile">
-        <div>Mohammad Ahmad</div>
+        <span>Mohammad Ahmad</span>
         <div class="avatar"></div>
       </div>
     </div>
 
-    <div class="content">
-      <div class="page-title">Dashboard</div>
-      <div class="page-subtitle">Search for your Team</div>
+    <div class="dashboard-content">
+      <h1 class="dashboard-title">Dashboard</h1>
+      <p class="dashboard-subtitle">Search for your Team</p>
 
-      <div class="dashboard-sections">
-        <!-- Connect Section -->
-        <div class="connect-section">
-          <div class="section-title">Lets Connect</div>
-          <div class="developers-and-filters">
-            <div class="developers-section">
-              <div class="section-subtitle">
-                Developers based in your filteration
-              </div>
-              <div class="developers-cards">
-                <!-- Developer Card 1 -->
-                <div class="developer-card">
-                  <div class="developer-header">
-                    <div class="developer-name">Ahmad</div>
-                    <div class="developer-role">Front-end</div>
-                  </div>
-                  <div class="developer-bio">
-                    Please add your content here. Keep it short and simple. And
-                    smile :)
-                  </div>
-                  <div class="developer-actions">
-                    <div class="invite-button">Invite</div>
-                    <div class="profile-button">View Profile</div>
-                  </div>
-                </div>
+      <div class="main-content">
+        <div class="developers-section">
 
-                <!-- Developer Card 2 -->
-                <div class="developer-card">
-                  <div class="developer-header">
-                    <div class="developer-name">Ahmad</div>
-                    <div class="developer-role">Front-end</div>
-                  </div>
-                  <div class="developer-bio">
-                    Please add your content here. Keep it short and simple. And
-                    smile :)
-                  </div>
-                  <div class="developer-actions">
-                    <div class="invite-button">Invite</div>
-                    <div class="profile-button">View Profile</div>
-                  </div>
-                </div>
-              </div>
+          <div class="developers-container">
+            <div class="developers-header">
+              <p>Developers based in your filteration</p>
             </div>
-
-            <!-- Filter Section -->
-            <div class="filter-section">
-              <div class="filter-title">Multiple items selected</div>
-              <div class="filter-subtitle">
-                Filter for developers , Match with your needs !
-              </div>
-              <div class="filter-tags">
-                <div class="filter-tag">
-                  <div>Role</div>
-                  <div></div>
+            <div class="developers-grid">
+              <div class="developer-card" *ngFor="let developer of filteredDevelopers; trackBy: trackByFn">
+                <div class="developer-header">
+                  <h3 class="developer-name">
+                    {{ developer?.name || "Anonymous" }}
+                  </h3>
+                  <span class="developer-role">{{
+                    developer?.email || "Front-end"
+                    }}</span>
                 </div>
-                <div class="filter-tag">
-                  <div>Skill</div>
-                  <div></div>
-                </div>
-                <div class="filter-tag">
-                  <div>Status</div>
-                  <div></div>
-                </div>
-              </div>
-              <div class="filter-roles">
-                <div class="filter-roles-title">Filter Roles</div>
-                <div class="filter-roles-options">
-                  <div class="filter-role-option">
-                    <input type="checkbox" checked />
-                    <div>Front-end</div>
-                  </div>
-                  <div class="filter-role-option">
-                    <input type="checkbox" checked />
-                    <div>Back-end</div>
-                  </div>
-                  <div class="filter-role-option">
-                    <input type="checkbox" checked />
-                    <div>Full-stack</div>
-                  </div>
-                  <div class="filter-role-option">
-                    <input type="checkbox" />
-                    <div>Database</div>
-                  </div>
+                <p class="developer-bio">
+                  {{
+                  developer?.bio ||
+                  "Please add your content here. Keep it short and simple. And smile :)"
+                  }}
+                </p>
+                <div class="developer-actions">
+                  <button class="btn-invite" [attr.aria-label]="
+                      'Invite ' + (developer?.firstName || 'developer')
+                    ">
+                    Invite
+                  </button>
+                  <button class="btn-profile" [attr.aria-label]="
+                      'View profile of ' + (developer?.firstName || 'developer')
+                    ">
+                    View Profile
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Bottom Sections -->
-      <div class="bottom-sections">
-        <!-- Rooms Section -->
-        <div class="rooms-section">
-          <div class="section-title">Your Rooms</div>
-          <div class="section-subtitle">
-            Lorem ipsum dolor sit amet, consectetur
+        <div class="filters-section">
+          <h3 class="filter-title">Multiple items selected</h3>
+          <p class="filter-subtitle">
+            Filter for developers, Match with your needs!
+          </p>
+
+          <div class="card flex justify-content-center" style="display: flex; gap: 10px; align-items: center;">
+            <select id="skills" [(ngModel)]="selectedskill" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected >Select a Skill</option>
+              <option *ngFor="let skill of allskills" [value]="skill.id">
+                {{ skill.name }}
+              </option>
+            </select>
+          
+            <select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected>Select Level</option>
+              <option *ngFor="let level of allExperienceLevel" [value]="level.id">
+                {{ level.name }}
+              </option>
+            </select>
+          
+            <select id="Role" [(ngModel)]="selectedRole" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected>Select a Role</option>
+              <option *ngFor="let role of allRoles" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>
           </div>
-          <div class="room-item">
-            <div class="room-icon"></div>
-            <div>
-              <div class="room-name">Room1</div>
-              <div class="room-description">
-                Something short and simple here.😊
+          
+        </div>
+
+        <div class="bottom-sections">
+          <div class="rooms-section">
+            <h3>Your Rooms</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur</p>
+            <div class="room-item">
+              <div class="room-avatar"></div>
+              <div class="room-info">
+                <h4>Room1</h4>
+                <p>Something short and simple here.😊</p>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Invitations Section -->
-        <div class="invitations-section">
-          <div class="section-title">Your Invitations</div>
-          <div class="section-subtitle">
-            Adipiscing elit, sed do eiusmod tempor
-          </div>
-          <div class="invitations-list">
-            <div class="invitation-item">
-              <div class="invitation-avatar"></div>
-              <div class="invitation-name">Saleh Ahmad</div>
-              <div class="invitation-price">IDR 45,000</div>
-            </div>
-            <div class="invitation-item">
-              <div class="invitation-avatar"></div>
-              <div class="invitation-name">Safwan Moh</div>
-              <div class="invitation-price">IDR 75,000</div>
-            </div>
-            <div class="invitation-item">
-              <div class="invitation-avatar"></div>
-              <div class="invitation-name">Dalia OG</div>
-              <div class="invitation-price">IDR 45,000</div>
-            </div>
-            <div class="invitation-item">
-              <div class="invitation-avatar"></div>
-              <div class="invitation-name">Sara SS</div>
-              <div class="invitation-price">IDR 45,000</div>
+          <div class="invitations-section">
+            <h3>Your Invitations</h3>
+            <p>Adipiscing elit, sed do eiusmod tempor</p>
+            <div class="invitations-list">
+              <div class="invitation-item">
+                <div class="invitation-avatar"></div>
+                <span class="invitation-name">Saleh Ahmad</span>
+                <span class="invitation-amount">IDR 45,000</span>
+              </div>
+              <div class="invitation-item">
+                <div class="invitation-avatar"></div>
+                <span class="invitation-name">Safwan Moh</span>
+                <span class="invitation-amount">IDR 75,000</span>
+              </div>
+              <div class="invitation-item">
+                <div class="invitation-avatar"></div>
+                <span class="invitation-name">Dalia OG</span>
+                <span class="invitation-amount">IDR 45,000</span>
+              </div>
+              <div class="invitation-item">
+                <div class="invitation-avatar"></div>
+                <span class="invitation-name">Sara SS</span>
+                <span class="invitation-amount">IDR 45,000</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>

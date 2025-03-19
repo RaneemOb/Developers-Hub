@@ -1,115 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-
 .dashboard-container {
   display: flex;
   font-family: "Inter", sans-serif;
   background-color: #f9fafb;
-  height: 100vh;
+  min-height: 100vh;
 }
 
-/* Sidebar Styles */
-.sidebar {
-  width: 263px;
-  padding: 28px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background-color: #f1f2f7;
-}
-
-.logo {
-  color: #5a67ba;
-  font-family: "Poppins", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 40px;
-}
-
-.menu-section,
-.others-section {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.menu-header {
-  color: #082431;
-  font-family: "Poppins", sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  opacity: 0.5;
-}
-
-.menu-items {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.menu-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border-radius: 5px;
-  color: #273240;
-  font-family: "Poppins", sans-serif;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.menu-item:hover {
-  background-color: rgba(90, 106, 207, 0.1);
-}
-
-.menu-icon {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-}
-
-.discover-icon {
-  color: #707fdd;
-  font-size: 16px;
-}
-
-.my-rooms-icon,
-.invitations-icon,
-.projects-icon,
-.settings-icon,
-.help-icon {
-  color: #a6abc8;
-  font-size: 16px;
-}
-
-.menu-text.active {
-  color: #5a6acf;
-}
-
-
-/* Main Content Styles */
-.main-content {
+.dashboard-main {
   flex: 1;
-  padding: 24px;
-  background-color: #f9fafb;
-  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.header {
+.search-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
+  padding: 24px;
+  background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
-.search-input {
+.search-input input {
   width: 300px;
   padding: 8px 16px;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.search-input input:focus {
   outline: none;
+  border-color: #4f46e5;
 }
 
 .user-profile {
@@ -125,34 +47,31 @@
   border-radius: 50%;
 }
 
-.page-title {
+.dashboard-content {
+  padding: 0 24px 24px;
+}
+
+.dashboard-title {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 16px;
 }
 
-.page-subtitle {
+.dashboard-subtitle {
   font-size: 14px;
   color: #6b7280;
   margin-bottom: 24px;
 }
 
-.dashboard-sections {
+.main-content {
   display: flex;
   gap: 24px;
-}
-
-.connect-section {
-  flex: 1;
-}
-
-.developers-and-filters {
-  display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .developers-section {
   flex: 1;
+  min-width: 300px;
 }
 
 .section-title {
@@ -161,23 +80,40 @@
   margin-bottom: 24px;
 }
 
-.section-subtitle {
+.developers-container {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+}
+
+.developers-header {
   font-size: 14px;
   color: #6b7280;
   margin-bottom: 16px;
 }
 
-.developers-cards {
-  display: flex;
+.developers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
 }
 
 .developer-card {
-  padding: 24px;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
-  width: 300px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.developer-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 6px -1px rgb(0 0 0 / 0.1),
+    0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .developer-header {
@@ -198,6 +134,7 @@
   color: #6b7280;
   font-size: 14px;
   margin-bottom: 16px;
+  line-height: 1.5;
 }
 
 .developer-actions {
@@ -205,31 +142,61 @@
   gap: 12px;
 }
 
-.invite-button {
+.btn-invite {
   padding: 8px 16px;
   border-radius: 6px;
   font-size: 14px;
   color: #4f46e5;
+  background: transparent;
   border: 1px solid #4f46e5;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.profile-button {
+.btn-invite:hover {
+  background-color: #4f46e5;
+  color: #fff;
+}
+
+.btn-profile {
   padding: 8px 16px;
   border-radius: 6px;
   font-size: 14px;
   background-color: #4f46e5;
   color: #fff;
+  border: none;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.filter-section {
-  width: 300px;
-  background-color: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+.btn-profile:hover {
+  background-color: #4338ca;
 }
+
+.filters-section {
+  width: 100%;/* Make sure the section takes full width */
+  max-width: 300px; /* Limit width for better layout */
+  margin: 0 auto; /* Center the section */
+  padding: 20px; /* Add some spacing */
+}
+
+.filters-section .card {
+  display: flex;
+  justify-content: space-between; /* Distribute dropdowns evenly */
+  gap: 10px; /* Add spacing between dropdowns */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  width: 100%;
+}
+
+.filters-section select {
+  flex: 1; /* Make each dropdown take equal width */
+  min-width: 150px; /* Prevent them from shrinking too much */
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 
 .filter-title {
   font-weight: 600;
@@ -256,46 +223,74 @@
   padding: 8px 16px;
   border-radius: 6px;
   font-size: 14px;
-  background-color: #f3f4f6;
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  transition: border-color 0.2s ease;
+}
+
+.filter-tag:hover {
+  border-color: #4f46e5;
 }
 
 .filter-roles {
+  background-color: #fff;
   padding: 16px;
   border-radius: 8px;
-  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
 }
 
-.filter-roles-title {
+.filter-roles h4 {
   font-size: 14px;
   margin-bottom: 12px;
   font-weight: 500;
 }
 
-.filter-roles-options {
+.roles-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.filter-role-option {
+.role-item {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.role-item:hover {
+  color: #4f46e5;
 }
 
 .bottom-sections {
   display: flex;
   gap: 24px;
   margin-top: 32px;
+  flex-wrap: wrap;
 }
 
 .rooms-section,
 .invitations-section {
   flex: 1;
+  min-width: 300px;
+  background-color: #fff;
   padding: 24px;
   border-radius: 12px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.rooms-section h3,
+.invitations-section h3 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.rooms-section p,
+.invitations-section p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 16px;
 }
 
 .room-item {
@@ -304,21 +299,22 @@
   align-items: center;
 }
 
-.room-icon {
+.room-avatar {
   width: 48px;
   height: 48px;
   background-color: #e5e7eb;
   border-radius: 50%;
 }
 
-.room-name {
+.room-info h4 {
   font-weight: 500;
   margin-bottom: 4px;
 }
 
-.room-description {
+.room-info p {
   color: #6b7280;
   font-size: 14px;
+  margin: 0;
 }
 
 .invitations-list {
@@ -331,6 +327,13 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.invitation-item:hover {
+  background-color: #f9fafb;
 }
 
 .invitation-avatar {
@@ -344,7 +347,75 @@
   flex: 1;
 }
 
-.invitation-price {
+.invitation-amount {
   color: #6b7280;
   font-size: 14px;
+}
+
+@media (max-width: 1024px) {
+  .developers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .search-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .search-input input {
+    width: 100%;
+  }
+
+  .main-content {
+    flex-direction: column;
+  }
+
+  .filters-section {
+    width: 100%;
+    order: -1;
+  }
+
+  .developers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-sections {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-main {
+    padding: 16px;
+  }
+
+  .search-header {
+    margin: -16px -16px 16px -16px;
+    padding: 16px;
+  }
+
+  .developer-actions {
+    flex-direction: column;
+  }
+
+  .btn-invite,
+  .btn-profile {
+    width: 100%;
+    text-align: center;
+  }
+
+  .filter-tags {
+    flex-direction: column;
+  }
+
+  .filter-tag {
+    width: 100%;
+  }
 }
