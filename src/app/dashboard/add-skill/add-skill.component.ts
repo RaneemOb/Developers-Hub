@@ -87,14 +87,13 @@ export class AddSkillComponent implements OnInit {
   }
 
 
-  // Method to be called from your component
+
   AllSelectedChange(): void {
     const nameIdentifierString = sessionStorage.getItem('nameidentifier');
 
-    // Convert it to a number
-    const userId = nameIdentifierString ? Number(nameIdentifierString) : null; // Assuming userId is stored in sessionStorage or can be decoded from JWT token
+    const userId = nameIdentifierString ? Number(nameIdentifierString) : null;
     if (userId && this.selectedskill) {
-      this.postSkillData(userId, this.selectedskill); // Call the post method to send data
+      this.postSkillData(userId, this.selectedskill);
     } else {
       console.error('User ID or Skill ID is missing');
     }

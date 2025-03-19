@@ -71,25 +71,25 @@ export class SignInComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
-  
-      // Directly call the login API
+
+
       this.http.post<any>(this.loginUrl, credentials).subscribe({
         next: (response) => {
-          // Ensure the token is present in the response data
-          const token = response.data; // The token is inside the 'data' field
-  
+
+          const token = response.data; //token inside data
+
           if (token) {
-            // Store token in sessionStorage
+
             sessionStorage.setItem('token', token); // Store token
-  
-            // Decode the token using jwt-decode
+
+
             const decodedToken: any = jwtDecode(token);
-  
+
             // Access and store nameidentifier from the decoded token
             const nameIdentifier = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
-            sessionStorage.setItem('nameidentifier', nameIdentifier); // Store nameidentifier
-  
-            // Call the method to get the user's skills count
+            sessionStorage.setItem('nameidentifier', nameIdentifier);
+
+
             this.getUserSkillsCount(nameIdentifier).subscribe({
               next: (skillCount) => {
                 if (skillCount !== 0) {
@@ -119,7 +119,7 @@ export class SignInComponent implements OnInit {
       this.loginForm.markAllAsTouched();
     }
   }
-  
+
   get formControls() {
     return this.loginForm.controls;
   }
