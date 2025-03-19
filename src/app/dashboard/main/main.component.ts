@@ -115,7 +115,7 @@ export class MainComponent implements OnInit {
     }
   }
   onDropdownChange() {
-    if (this.selectedskill && this.selectedRole && this.selectedLevel) {
+    if (this.selectedskill) {
       this.AllSelectedChange(this.selectedskill);
     }
   }

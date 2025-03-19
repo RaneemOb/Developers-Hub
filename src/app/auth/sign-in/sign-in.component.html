@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <button type="submit" class="login-button" [disabled]="loginForm.invalid">
+          <button type="submit" class="login-button" [disabled]="loginForm.invalid" (click)="onSubmit()">
             Login
           </button>
 

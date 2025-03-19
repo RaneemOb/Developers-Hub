@@ -1,0 +1,51 @@
+<div class="login-page">
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="login-form-container">
+                <div class="welcome-text">
+                    <span class="welcome-prefix">Welcome to</span>
+                    <br />
+                    <span class="app-name">Developers Hub</span>
+                </div>
+
+                <div class="tagline">
+                    Empowering developers to connect, create, and grow
+                </div>
+                <div class="form-group" style="margin-top: 50px; margin-bottom: 50px;">
+                    <label>Select a Skill *</label>
+                    <select style="
+                    flex: 1;
+                    min-width: 3;
+                    padding: 8px;
+                    font-size: 14px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    width: 100%;" required id="skills" [(ngModel)]="selectedskill">
+                        <option value="" disabled selected>Select a Skill</option>
+                        <option *ngFor="let skill of allskills" [value]="skill.id">
+                            {{ skill.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button" style="border: none;
+                background-color: #6358dc;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                display:flex;
+                align-items: center;
+                gap: 8px;
+                cursor: pointer;
+                margin-top: 24px;
+                width: 30%;" [style.background-color]="!selectedskill ? '#9ca3af' : '#6358dc'"
+                    (click)="AllSelectedChange()">
+                    Next
+                    <span class="arrow-right">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

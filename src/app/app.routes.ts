@@ -7,6 +7,7 @@ import { OpenSourceSuggestionPageComponent } from './dashboard/open-source-sugge
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { AllRoomsComponent } from './dashboard/all-rooms/all-rooms.component';
 import { MyInvitationsComponent } from './dashboard/my-invitations/my-invitations.component';
+import { AddSkillComponent } from './dashboard/add-skill/add-skill.component';
 
 export const routes: Routes = [
     { path: 'home-page', component: HomeComponent },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: "room-page", component: RoomPageComponent },
     { path: "open-source-suggestion", component: OpenSourceSuggestionPageComponent },
     { path: "all-rooms", component: AllRoomsComponent },
-    { path: "my-invitations", component: MyInvitationsComponent }
+    { path: "my-invitations", component: MyInvitationsComponent },
+    { path: "add-skill", component: AddSkillComponent }
 ];

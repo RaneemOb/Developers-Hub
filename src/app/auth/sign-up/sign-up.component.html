@@ -1,14 +1,14 @@
 <div class="container">
   <div class="header">
-    <h1 class="title">Developer Hub</h1>
+    <h1 class="title">Developers Hub</h1>
     <button class="close-button" (click)="onClose()">×</button>
   </div>
 
-  <div class="progress-indicators">
+  <!--<div class="progress-indicators">
     <div class="indicator active"></div>
     <div class="indicator"></div>
     <div class="indicator"></div>
-  </div>
+  </div>-->
 
   <div class="content">
     <h2 class="subtitle">Profile info</h2>
@@ -17,121 +17,105 @@
     </p>
 
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-      <div class="terms-section">
-        <input
-          type="checkbox"
-          id="terms"
-          formControlName="terms"
-          class="terms-checkbox"
-        />
+      <!-- <div class="terms-section">
+        <input type="checkbox" id="terms" formControlName="terms" class="terms-checkbox" />
         <label for="terms" class="terms-label">
           I agree with <a href="#" class="terms-link">Terms of use</a>
         </label>
-        <div
-          *ngIf="
+        <div *ngIf="
             signUpForm.get('terms')?.invalid && signUpForm.get('terms')?.touched
-          "
-          class="error-message"
-        >
+          " class="error-message">
           You must agree to the terms to continue
         </div>
-      </div>
+      </div>-->
 
       <div class="personal-data">
-        <h3 class="section-title">Personal data</h3>
-        <p class="section-subtitle">Specify exactly as in your passport</p>
-
+        <h3 class="section-title" style="margin-bottom: 25px;">Personal data</h3>
         <div class="form-group">
-          <label for="firstName">First name</label>
-          <input
-            type="text"
-            id="firstName"
-            formControlName="firstName"
-            class="form-input"
-          />
-          <div
-            *ngIf="
-              signUpForm.get('firstName')?.invalid &&
-              signUpForm.get('firstName')?.touched
-            "
-            class="error-message"
-          >
-            First name is required
+
+          <input type="text" id="tName" formControlName="name" [(ngModel)]="name" placeholder="Enter your Name"
+            class="form-input" />
+          <div *ngIf="
+              signUpForm.get('name')?.invalid &&
+              signUpForm.get('name')?.touched
+            " class="error-message">
+            Name is required
           </div>
         </div>
 
         <div class="form-group">
-          <label for="lastName">Second name</label>
-          <input
-            type="text"
-            id="lastName"
-            formControlName="lastName"
-            class="form-input"
-          />
-          <div
-            *ngIf="
-              signUpForm.get('lastName')?.invalid &&
-              signUpForm.get('lastName')?.touched
-            "
-            class="error-message"
-          >
-            Last name is required
+
+          <input type="text" id="Email" formControlName="email" [(ngModel)]="email" placeholder="Enter your Email"
+            class="form-input" />
+          <div *ngIf="
+              signUpForm.get('email')?.invalid &&
+              signUpForm.get('email')?.touched
+             " class="error-message">
+            Email is Required
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group half-width">
-            <label for="dateOfBirth">Date of Birth</label>
-            <div class="select-wrapper">
-              <input
-                type="text"
-                id="dateOfBirth"
-                formControlName="dateOfBirth"
-                class="form-input"
-              />
-              <span class="arrow-down"></span>
-              <div
-                *ngIf="
-                  signUpForm.get('dateOfBirth')?.invalid &&
-                  signUpForm.get('dateOfBirth')?.touched
-                "
-                class="error-message"
-              >
-                Date of birth is required
-              </div>
+        <!-- <div class="form-row">-->
+        <div class="form-group">
+
+          <div class="select-wrapper">
+            <input type="password" id="Password" formControlName="passwordHash" placeholder="Enter your Password"
+              [(ngModel)]="passwordHash" class="form-input" />
+
+            <div *ngIf="
+                  signUpForm.get('password')?.invalid &&
+                  signUpForm.get('password')?.touched
+                " class="error-message">
+              Password is required
             </div>
           </div>
+        </div>
+        <hr style="margin-top: 50px;margin-bottom: 50px;   opacity: 50%;">
+        <div class="form-group ">
 
-          <div class="form-group half-width">
-            <label for="country">Country</label>
-            <div class="select-wrapper">
-              <input
-                type="text"
-                id="country"
-                formControlName="country"
-                class="form-input"
-              />
-              <span class="arrow-down"></span>
-              <div
-                *ngIf="
-                  signUpForm.get('country')?.invalid &&
-                  signUpForm.get('country')?.touched
-                "
-                class="error-message"
-              >
-                Country is required
-              </div>
+          <div class="select-wrapper" style="margin-bottom: 20px;">
+
+            <textarea formControlName="bio" [(ngModel)]="bio" class="form-input"
+              placeholder="Enter your Bio"></textarea>
+            <div *ngIf="
+                  signUpForm.get('bio')?.invalid &&
+                  signUpForm.get('bio')?.touched
+                " class="error-message">
+              Bio is required
             </div>
+          </div>
+          <div class="form-group" class="card flex justify-content-center"
+            style="display: flex; gap: 10px; align-items: center;">
+          <!--  <label>Select a Skill *</label>
+            <select required id="skills" [(ngModel)]="selectedskill" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected>Select a Skill</option>
+              <option *ngFor="let skill of allskills" [value]="skill.id">
+                {{ skill.name }}
+              </option>
+            </select>-->
+
+
+
+            <!--<select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected>Select Level</option>
+              <option *ngFor="let level of allExperienceLevel" [value]="level.id">
+                {{ level.name }}
+              </option>
+            </select>
+
+            <select id="Role" [(ngModel)]="selectedRole" (ngModelChange)="onDropdownChange()">
+              <option value="" disabled selected>Select a Role</option>
+              <option *ngFor="let role of allRoles" [value]="role.id">
+                {{ role.name }}
+              </option>
+            </select>-->
           </div>
         </div>
       </div>
+      <!--</div>-->
 
-      <button
-        type="submit"
-        class="submit-button"
-        [disabled]="signUpForm.invalid"
-      >
-        Go Next
+      <button type="submit" class="submit-button" >
+        Submit
         <span class="arrow-right">→</span>
       </button>
     </form>

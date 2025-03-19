@@ -56,12 +56,13 @@
         </div>
 
         <div class="filters-section">
-          <h3 class="filter-title">Multiple items selected</h3>
+          <h3 class="filter-title">Search for your needs</h3>
           <p class="filter-subtitle">
             Filter for developers, Match with your needs!
           </p>
 
           <div class="card flex justify-content-center" style="display: flex; gap: 10px; align-items: center;">
+            <label style="font-size: small;">Select a Skill</label>
             <select id="skills" [(ngModel)]="selectedskill" (ngModelChange)="onDropdownChange()">
               <option value="" disabled selected >Select a Skill</option>
               <option *ngFor="let skill of allskills" [value]="skill.id">
@@ -69,7 +70,7 @@
               </option>
             </select>
           
-            <select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
+           <!-- <select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
               <option value="" disabled selected>Select Level</option>
               <option *ngFor="let level of allExperienceLevel" [value]="level.id">
                 {{ level.name }}
@@ -81,7 +82,7 @@
               <option *ngFor="let role of allRoles" [value]="role.id">
                 {{ role.name }}
               </option>
-            </select>
+            </select>-->
           </div>
           
         </div>

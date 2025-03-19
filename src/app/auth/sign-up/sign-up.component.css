@@ -19,7 +19,7 @@
 .title {
   font-size: 24px;
   font-weight: 600;
-  color: #111827;
+  color: #7c8fb1;
   margin: 0;
 }
 
@@ -113,6 +113,7 @@
 
 .form-group {
   margin-bottom: 16px;
+
 }
 
 .form-group label {
@@ -143,7 +144,14 @@
 .select-wrapper {
   position: relative;
 }
-
+.form-group select{
+  flex: 1;
+  min-width: 150px;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 .arrow-down {
   position: absolute;
   right: 12px;

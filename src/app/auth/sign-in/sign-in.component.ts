@@ -8,21 +8,26 @@ import {
   FormControl,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-
+import { Observable } from "rxjs";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { jwtDecode } from "jwt-decode";
 @Component({
   selector: "app-sign-in",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: "./sign-in.component.html",
   styleUrl: "./sign-in.component.css",
 })
 export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword = false;
-
+  userId: any;
+  private skillsUrl = 'http://hackathon-ramadan.runasp.net/api/Skills/GetUserSkills/';
+  private loginUrl = 'http://hackathon-ramadan.runasp.net/api/Auth/LoginUserByEmailAndPassword';
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private http: HttpClient
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -44,19 +49,82 @@ export class SignInComponent implements OnInit {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-
+  getUserSkillsCount(userId: number): Observable<number> {
+    return new Observable<number>((observer) => {
+      this.http.get<any>(`${this.skillsUrl}${userId}`).subscribe({
+        next: (response: { data: string | any[]; }) => {
+          // If API returns data
+          if (response && response.data) {
+            // Return the number of skills in the 'data' array
+            observer.next(response.data.length);
+          } else {
+            observer.next(0);  // If no data found, return 0
+          }
+        },
+        error: (err: any) => {
+          console.error('Error fetching user skills:', err);
+          observer.error(err); // Handle API error
+        }
+      });
+    });
+  }
   onSubmit(): void {
     if (this.loginForm.valid) {
-      // Here you would typically call an authentication service
-      console.log("Form submitted:", this.loginForm.value);
-
-      // Navigate to dashboard or home after successful login
-      // this.router.navigate(['/dashboard']);
+      const credentials = this.loginForm.value;
+  
+      // Directly call the login API
+      this.http.post<any>(this.loginUrl, credentials).subscribe({
+        next: (response) => {
+          // Ensure the token is present in the response data
+          const token = response.data; // The token is inside the 'data' field
+  
+          if (token) {
+            // Store token in sessionStorage
+            sessionStorage.setItem('token', token); // Store token
+  
+            // Decode the token using jwt-decode
+            const decodedToken: any = jwtDecode(token);
+  
+            // Access and store nameidentifier from the decoded token
+            const nameIdentifier = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+            sessionStorage.setItem('nameidentifier', nameIdentifier); // Store nameidentifier
+  
+            // Call the method to get the user's skills count
+            this.getUserSkillsCount(nameIdentifier).subscribe({
+              next: (skillCount) => {
+                if (skillCount !== 0) {
+                  // Redirect to the dashboard if the user has skills
+                  this.router.navigate(['/dashboard-main']);
+                } else {
+                  // Redirect to the add skill page if no skills are found
+                  this.router.navigate(['/add-skill']);
+                }
+              },
+              error: (err) => {
+                console.error('Error fetching skills:', err);
+                alert('Error retrieving skills');
+              },
+            });
+          } else {
+            console.error('Token is missing in the response');
+            alert('Error: Token is missing');
+          }
+        },
+        error: (err) => {
+          console.error('Login failed:', err);
+          alert('Invalid email or password');
+        },
+      });
     } else {
-      // Mark all fields as touched to trigger validation messages
       this.loginForm.markAllAsTouched();
     }
   }
+  
+  get formControls() {
+    return this.loginForm.controls;
+  }
+
+
 
   navigateToRegister(): void {
     this.router.navigate(["/auth/sign-up"]);
