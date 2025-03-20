@@ -18,5 +18,8 @@ export const routes: Routes = [
     { path: "open-source-suggestion", component: OpenSourceSuggestionPageComponent },
     { path: "all-rooms", component: AllRoomsComponent },
     { path: "my-invitations", component: MyInvitationsComponent },
-    { path: "add-skill", component: AddSkillComponent }
+    { path: "add-skill", component: AddSkillComponent },
+
+    { path: "", component: HomeComponent },
+    { path: "**", component: HomeComponent }
 ];

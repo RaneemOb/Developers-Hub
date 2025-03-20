@@ -9,10 +9,14 @@
       <div class="input-section">
         <div class="input-container">
           <div class="input-label">Starts With</div>
-          <div class="input-value">GIVE ME OPEN SOURCE PROJECTS</div>
+          <button class="input-value" (click)="suggestOpenSourceProjects()">GIVE ME OPEN SOURCE PROJECTS</button>
         </div>
       </div>
-      <div class="ai-reply-section">
+      @if (suggestions) {
+        <div [innerHTML]="suggestions" class="suggestion"></div>
+      }
+
+      <!-- <div class="ai-reply-section">
         <div class="section-title">AI Reply</div>
         <div class="reply-messages">
           <div class="message-box">
@@ -32,7 +36,7 @@
             <div class="message-content">Project overview</div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

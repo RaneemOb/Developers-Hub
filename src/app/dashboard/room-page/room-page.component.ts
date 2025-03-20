@@ -27,7 +27,6 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
 
 
-
 @Component({
   selector: "app-room-page",
   templateUrl: "./room-page.component.html",
@@ -36,6 +35,8 @@ import { ActivatedRoute } from '@angular/router';
   imports: [MatCardModule, CommonModule, ReactiveFormsModule, SidebarComponent, FormsModule, HttpClientModule, MatFormFieldModule, MatInputModule],
 })
 export class RoomPageComponent implements OnInit {
+
+  suggestions: string = '';
   roomId: any;
   room: any;
   roomMembers: any = [];
@@ -43,6 +44,27 @@ export class RoomPageComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog,
     private route: ActivatedRoute) { }
+
+
+  suggestProjectForRoom() {
+    // fill the roomId correctly
+    this.getRoomSuggestion(1).subscribe(
+      (response) => {
+        console.log(response);
+        this.suggestions = response;
+      },
+      (error) => {
+        console.error("Error fetching suggestions:", error);
+      }
+    );
+  }
+  private getRoomSuggestion(roomId: number) {
+    return this.http.get<any>(
+      `http://hackathon-ramadan.runasp.net/api/AiIntegration/${roomId}/SuggestRoomProject`
+    );
+  }
+
+
 
   ngOnInit(): void {
     this.roomId = this.route.snapshot.paramMap.get('roomId'); // Get room ID from URL
