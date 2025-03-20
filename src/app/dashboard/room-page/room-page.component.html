@@ -11,40 +11,12 @@
       <div class="room-name">{{room.name}}</div>
       <div class="action-buttons">
         <button class="action-button" (click)="suggestProjectForRoom()">SUGGEST PROJECT FOR OUR ROOM</button>
-        <button class="action-button">SUGGEST WORK PLAN</button>
+
       </div>
 
-      @if (suggestions) {
-        <div [innerHTML]="suggestions" class="suggestion"></div>
-      }
-      
-      <div class="ai-replies">
-        <div class="section-title">AI Reply</div>
-        <div class="messages-container">
-          <div class="message-box">
-            <div class="message-sender">Bot Message</div>
-            <div class="message-content">Based in you Experience</div>
-          </div>
-          <div class="message-box">
-            <div class="message-sender">Bot Message</div>
-            <div class="message-content">you can build E-commerce</div>
-          </div>
-          <div class="message-box">
-            <div class="message-sender">Bot Message</div>
-            <div class="message-content">
-              <div>Each one role :</div>
-              <div></div>
-              <div>Sami : Front-end</div>
-              <div></div>
-              <div>Moh:Back-end</div>
-            </div>
-          </div>
-          <div class="message-box">
-            <div class="message-sender">Bot Message</div>
-            <div class="message-content">Project overview</div>
-          </div>
-        </div>
-      </div>
+      <div *ngIf="suggestions" [innerHTML]="suggestions"></div>
+
+
     </div>
     <div class="members-section" style="margin-top: 30px;">
       <div class="section-title">Members</div>

@@ -12,9 +12,8 @@
           <button class="input-value" (click)="suggestOpenSourceProjects()">GIVE ME OPEN SOURCE PROJECTS</button>
         </div>
       </div>
-      @if (suggestions) {
-        <div [innerHTML]="suggestions" class="suggestion"></div>
-      }
+      <div *ngIf="suggestions" [innerHTML]="suggestions"></div>
+
 
       <!-- <div class="ai-reply-section">
         <div class="section-title">AI Reply</div>

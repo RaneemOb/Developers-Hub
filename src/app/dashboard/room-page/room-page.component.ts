@@ -4,7 +4,7 @@ import { ChangeDetectorRef, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogClose, MatDialogRef } from "@angular/material/dialog";
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import {
   FormBuilder,
   FormControl,
@@ -25,7 +25,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: "app-room-page",
@@ -35,35 +35,63 @@ import { ActivatedRoute } from '@angular/router';
   imports: [MatCardModule, CommonModule, ReactiveFormsModule, SidebarComponent, FormsModule, HttpClientModule, MatFormFieldModule, MatInputModule],
 })
 export class RoomPageComponent implements OnInit {
-
-  suggestions: string = '';
+  private apiUrl = 'http://hackathon-ramadan.runasp.net/api/AiIntegration';
+  suggestions: SafeHtml | null = null;
   roomId: any;
   room: any;
   roomMembers: any = [];
   UsersInfo : any = [];
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,private sanitizer: DomSanitizer) { }
 
+   
 
   suggestProjectForRoom() {
-    // fill the roomId correctly
-    this.getRoomSuggestion(1).subscribe(
-      (response) => {
-        console.log(response);
-        this.suggestions = response;
+    if (this.roomId == null || this.roomId === undefined) {
+      console.error("User ID is undefined. Cannot fetch suggestions.");
+      return;
+    }
+
+    this.getRoomSuggestion(this.roomId).subscribe(
+      (response: string) => {
+        console.log('Suggestions received:', response);
+        this.suggestions = this.sanitizer.bypassSecurityTrustHtml(response);  // Sanitize and store the HTML
       },
       (error) => {
         console.error("Error fetching suggestions:", error);
       }
     );
   }
-  private getRoomSuggestion(roomId: number) {
-    return this.http.get<any>(
-      `http://hackathon-ramadan.runasp.net/api/AiIntegration/${roomId}/SuggestRoomProject`
+public getRoomSuggestion(roomId: number, message: string | null = null): Observable<string> {
+    const token = sessionStorage.getItem('token'); // Get token from sessionStorage
+
+    if (!token) {
+      console.error('No token found in sessionStorage');
+      return new Observable<string>(); // Return empty observable if no token
+    }
+
+    // Construct the URL with userId (from the URL)
+    const url = `${this.apiUrl}/${roomId}/SuggestRoomProject`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    // Prepare the body with optional message
+    const body = { message: message }; // Only include message in the body, if provided
+
+    // Send POST request with body containing message and get response as text
+    return this.http.post(url, body, { headers, responseType: 'text' as 'json' }).pipe(
+      tap((response:any) => {
+        console.log('Received response:', response);  // This will now log the raw HTML
+      }),
+      catchError((error) => {
+        console.error('Error fetching suggestions:', error);
+        throw error;  // Rethrow the error so it's handled in the component
+      })
     );
   }
-
 
 
   ngOnInit(): void {

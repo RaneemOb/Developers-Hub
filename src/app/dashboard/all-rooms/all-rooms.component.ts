@@ -40,7 +40,11 @@ export class AllRoomsComponent implements OnInit {
   updatedRooms: any[] | undefined;
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog, private route: ActivatedRoute) {
+    const nameIdentifierString = sessionStorage.getItem('nameidentifier');
+    const userId = nameIdentifierString ? Number(nameIdentifierString) : null;
+
     this.createRoomForm = new FormGroup({
+      creatorId: new FormControl(userId, [Validators.required]),
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required])
     });
