@@ -6,20 +6,7 @@
     <!-- Main Content Column -->
     <div class="main-column">
       <div class="header-container">
-        <div class="header-content">
-          <div class="page-title">My Invitations</div>
-          <div class="user-info">
-            <div class="user-details">
-              <div class="user-avatar"></div>
-              <div class="user-name">Mohammad Ahmad</div>
-            </div>
-            <img
-              class="dropdown-icon"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/96cbba1b6ed1c99b53fb49913aa60f199a300e5d0d5275e34c9fa42093fefdf5?placeholderIfAbsent=true"
-              alt="Dropdown"
-            />
-          </div>
-        </div>
+        <h5>My Invitations</h5>
 
         <div class="invitations-container">
           <div class="invitations-content">
@@ -27,58 +14,32 @@
             <div class="invitations-list-column">
               <div class="invitation-list">
                 <!-- Invitation Items -->
-                <div
-                  class="invitation-item"
-                  *ngFor="let invitation of invitations; let i = index"
-                >
+                <div class="invitation-item" *ngFor="let invite of combinedInfoWithInvitations; let i = index">
                   <div class="invitation-content">
                     <div class="invitation-with-pic">
-                      <div
-                        class="invitation-picture"
-                        [style.background-image]="
-                          invitation.avatarUrl
-                            ? 'url(' + invitation.avatarUrl + ')'
-                            : ''
-                        "
-                      ></div>
                       <div class="invitation-details">
-                        <div class="room-name">{{ invitation.roomName }}</div>
+                        <div class="room-name">{{ invite.name }}</div>
                         <div class="invited-by">
-                          Invited by {{ invitation.invitedBy }}
+                          Invited by {{ invite.creatorName }}
                         </div>
                       </div>
                     </div>
-                    <div class="invitation-time">{{ invitation.time }}</div>
+                    <div class="invitation-time">{{ invite.description }}</div>
                   </div>
-                </div>
-              </div>
-            </div>
 
-            <!-- Actions Column -->
-            <div class="actions-column">
-              <div class="actions-container">
-                <!-- Actions for each invitation -->
-                <div
-                  class="action-buttons"
-                  *ngFor="let invitation of invitations; let i = index"
-                  [ngClass]="{ 'second-action': i > 0 }"
-                >
-                  <button
-                    class="accept-button"
-                    (click)="acceptInvitation(invitation.id)"
-                  >
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/640e2bf867626abbd7fa82bdb8bd0a34ad7bbddd4faf4e5cfef5041fd79bdaec?placeholderIfAbsent=true"
-                      alt="Accept"
-                    />
-                    <span>Accept</span>
-                  </button>
-                  <button
-                    class="reject-button"
-                    (click)="rejectInvitation(invitation.id)"
-                  >
-                    <span>Reject</span>
-                  </button>
+                  <!-- Actions Column -->
+                  <div class="actions-column">
+                    <div class="actions-container">
+                      <div class="action-buttons" [ngClass]="{ 'second-action': i > 0 }">
+                        <button class="accept-button" (click)="acceptInvitation(invite.invitationId)">
+                          <span>Accept</span>
+                        </button>
+                        <!--<button class="reject-button" (click)="rejectInvitation(invite.invitationId)">
+                          <span>Reject</span>
+                        </button>-->
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

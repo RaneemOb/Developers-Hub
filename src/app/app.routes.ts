@@ -14,7 +14,7 @@ export const routes: Routes = [
     { path: 'sign-up', component: SignUpComponent },
     { path: 'sign-in', component: SignInComponent },
     { path: "dashboard-main", component: MainComponent },
-    { path: "room-page", component: RoomPageComponent },
+    { path: "room-page/:roomId", component: RoomPageComponent },
     { path: "open-source-suggestion", component: OpenSourceSuggestionPageComponent },
     { path: "all-rooms", component: AllRoomsComponent },
     { path: "my-invitations", component: MyInvitationsComponent },

@@ -119,16 +119,7 @@ export class MainComponent implements OnInit {
       this.AllSelectedChange(this.selectedskill);
     }
   }
-  toggleRole(role: string): void {
-    const index = this.selectedRoles.indexOf(role);
-    if (index === -1) {
-      this.selectedRoles.push(role);
-    } else {
-      this.selectedRoles.splice(index, 1);
-    }
-  }
 
-  isRoleSelected(role: string): boolean {
-    return this.selectedRoles.includes(role);
-  }
+
+
 }

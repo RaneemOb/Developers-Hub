@@ -1,6 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 
 @Component({
   selector: "app-sidebar",
@@ -11,4 +11,12 @@ import { RouterModule } from "@angular/router";
 })
 export class SidebarComponent {
   @Input() activeItem: string = "discover";
+
+  constructor(private router: Router) { }
+  logout(): void {
+    sessionStorage.removeItem('token');
+    this.router.navigate(['/sign-in']);
+
+  }
+
 }

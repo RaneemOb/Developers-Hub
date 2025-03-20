@@ -5,18 +5,10 @@
   <div class="main-content">
     <div class="header">
       <div class="page-title">My Rooms</div>
-      <div class="user-info">
-        <div class="notification-container">
-          <div class="notification-dot"></div>
-        </div>
-        <div class="user-profile">
-          <div class="avatar"></div>
-          <div class="username">Mohammad Ahmad</div>
-        </div>
-      </div>
+
     </div>
     <div class="room-details">
-      <div class="room-name">Room Name</div>
+      <div class="room-name">{{room.name}}</div>
       <div class="action-buttons">
         <button class="action-button">SUGGEST PROJECT FOR OUR ROOM</button>
         <button class="action-button">SUGGEST WORK PLAN</button>
@@ -49,21 +41,13 @@
         </div>
       </div>
     </div>
-    <div class="members-section">
+    <div class="members-section" style="margin-top: 30px;">
       <div class="section-title">Members</div>
-      <div class="members-list">
+      <div class="members-list" *ngFor="let member of roomMembers">
         <div class="member-item">
-          <div class="member-avatar"></div>
           <div class="member-info">
-            <div class="member-name">Saleh Ahmad</div>
-            <div class="member-role">IDR 45.000</div>
-          </div>
-        </div>
-        <div class="member-item">
-          <div class="member-avatar"></div>
-          <div class="member-info">
-            <div class="member-name">Safwan Moh</div>
-            <div class="member-role">IDR 75.000</div>
+            <div class="member-name">{{member.name}}</div>
+            <div class="member-role">{{member.bio}}</div>
           </div>
         </div>
       </div>

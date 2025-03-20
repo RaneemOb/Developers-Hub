@@ -1,15 +1,7 @@
 <div class="dashboard-container">
   <app-sidebar></app-sidebar>
   <div class="dashboard-main">
-    <div class="search-header">
-      <div class="search-input">
-        <input type="text" placeholder="Search" [(ngModel)]="searchQuery" />
-      </div>
-      <div class="user-profile">
-        <span>Mohammad Ahmad</span>
-        <div class="avatar"></div>
-      </div>
-    </div>
+
 
     <div class="dashboard-content">
       <h1 class="dashboard-title">Dashboard</h1>
@@ -25,9 +17,9 @@
             <div class="developers-grid">
               <div class="developer-card" *ngFor="let developer of filteredDevelopers; trackBy: trackByFn">
                 <div class="developer-header">
-                  <h3 class="developer-name">
+                  <h4 class="developer-name">
                     {{ developer?.name || "Anonymous" }}
-                  </h3>
+                  </h4>
                   <span class="developer-role">{{
                     developer?.email || "Front-end"
                     }}</span>
@@ -64,13 +56,13 @@
           <div class="card flex justify-content-center" style="display: flex; gap: 10px; align-items: center;">
             <label style="font-size: small;">Select a Skill</label>
             <select id="skills" [(ngModel)]="selectedskill" (ngModelChange)="onDropdownChange()">
-              <option value="" disabled selected >Select a Skill</option>
+              <option value="" disabled selected>Select a Skill</option>
               <option *ngFor="let skill of allskills" [value]="skill.id">
                 {{ skill.name }}
               </option>
             </select>
-          
-           <!-- <select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
+
+            <!-- <select id="level" [(ngModel)]="selectedLevel" (ngModelChange)="onDropdownChange()">
               <option value="" disabled selected>Select Level</option>
               <option *ngFor="let level of allExperienceLevel" [value]="level.id">
                 {{ level.name }}
@@ -84,7 +76,7 @@
               </option>
             </select>-->
           </div>
-          
+
         </div>
 
         <div class="bottom-sections">

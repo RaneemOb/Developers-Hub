@@ -81,7 +81,7 @@ export class SignInComponent implements OnInit {
           if (token) {
 
             sessionStorage.setItem('token', token); // Store token
-
+            console.log(token);
 
             const decodedToken: any = jwtDecode(token);
 
