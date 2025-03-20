@@ -36,6 +36,7 @@ export class AllRoomsComponent implements OnInit {
   @ViewChild('CreateRoom') Create: any
   createRoomForm!: FormGroup;
   allRooms: any[] = [];
+  filteredRooms: any[] = [];
   private apiUrl = 'http://hackathon-ramadan.runasp.net/api/Rooms/CreateRoom';
   updatedRooms: any[] | undefined;
   constructor(private fb: FormBuilder, private http: HttpClient,
@@ -50,6 +51,8 @@ export class AllRoomsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    const nameIdentifierString = sessionStorage.getItem('nameidentifier');
+    const userId = nameIdentifierString ? Number(nameIdentifierString) : 0;
     this.getAllRooms().subscribe(
       (response: any) => {
         console.log(response);
@@ -73,6 +76,7 @@ export class AllRoomsComponent implements OnInit {
         console.error("Error fetching rooms:", error);
       }
     );
+    this.FilterRoomsUser(userId);
   }
   getAllRooms(): Observable<any[]> {
     return this.http.get<any[]>(
@@ -134,5 +138,26 @@ export class AllRoomsComponent implements OnInit {
   async openRoomPage(roomId: number) {
     this.router.navigate(['/room-page', roomId]);
   }
+  FilterRoomsUser(userId: number) {
+    this.getAllRooms().subscribe(
+      (response: any) => {
+        console.log('API Response:', response);
 
+        // Extract the 'data' array from the response
+        const rooms = response.data ?? []; // Ensures it's an array, avoids undefined errors
+
+        if (Array.isArray(rooms)) {
+          this.filteredRooms = rooms.filter(room => userId === room.creatorId);
+          console.log('Filtered Rooms:', this.filteredRooms);
+        } else {
+          console.error("Expected an array but got:", rooms);
+        }
+
+        this.cdRef.detectChanges();
+      },
+      (error) => {
+        console.error("Error fetching rooms:", error);
+      }
+    );
+  }
 }

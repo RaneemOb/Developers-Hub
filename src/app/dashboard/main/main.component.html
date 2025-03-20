@@ -33,7 +33,7 @@
                 <div class="developer-actions">
                   <button class="btn-invite" [attr.aria-label]="
                       'Invite ' + (developer?.firstName || 'developer')
-                    ">
+                    " (click)="createInvite(developer?.id)">
                     Invite
                   </button>
                   <button class="btn-profile" [attr.aria-label]="
@@ -122,3 +122,31 @@
       </div>
     </div>
   </div>
+  <ng-template #CreateInvite>
+    <mat-dialog-content class="dialog-container">
+      <mat-card class="room-card">
+        <mat-card-title class="text-center">Create a New Invite</mat-card-title>
+        <mat-card-content>
+          <div *ngIf="filteredRooms.length > 0">
+            <mat-list>
+              <mat-list-item *ngFor="let room of filteredRooms" (click)="sendRoomId(room.id)">
+                <mat-icon mat-list-icon>home</mat-icon> <!-- You can change this icon if needed -->
+                <span>{{ room.name }}</span> <!-- Display room name -->
+                <span *ngIf="room.description" class="room-description"> - {{ room.description }}</span>
+                <!-- Optionally show room description -->
+              </mat-list-item>
+            </mat-list>
+          </div>
+          <div *ngIf="filteredRooms.length === 0">
+            <p>No rooms found.</p>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions class="button-group">
+          <button class="btn-invite" mat-button mat-dialog-close [disabled]="filteredRooms.length === 0">Invite</button>
+        </mat-card-actions>
+
+
+      </mat-card>
+    </mat-dialog-content>
+  </ng-template>

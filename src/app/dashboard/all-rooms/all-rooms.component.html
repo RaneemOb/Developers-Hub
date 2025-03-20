@@ -15,19 +15,17 @@
         <button class="accept-button" style="width: 10%;" mat-button mat-dialog-close
           (click)="openCreateDialog()">Create Room</button>
         <div class="rooms-list">
-          <div class="room-card" 
-          *ngFor="let room of updatedRooms; trackBy: trackById" 
-          (click)="onRoomClick(room.id)" 
-          style="cursor: pointer;">
-       
-       <div class="room-info">
-         <div class="room-name">{{ room.name }}</div>
-         <div class="room-description">{{ room.description }}</div>
-       </div>
-       
-       <div class="room-time">{{ room.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</div>
-     </div>
-     
+          <div class="room-card" *ngFor="let room of filteredRooms; trackBy: trackById" (click)="onRoomClick(room.id)"
+            style="cursor: pointer;">
+
+            <div class="room-info">
+              <div class="room-name">{{ room.name }}</div>
+              <div class="room-description">{{ room.description }}</div>
+            </div>
+
+            <div class="room-time">{{ room.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+          </div>
+
         </div>
       </div>
 
