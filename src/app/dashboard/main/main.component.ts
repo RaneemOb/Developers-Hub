@@ -201,10 +201,12 @@ export class MainComponent implements OnInit {
     this.roomId = roomId;
   }
   createInvite(inviteeId: any) {
-    // Update the form with the inviteeId, roomId, and status
+    const nameIdentifierString = sessionStorage.getItem('nameidentifier');
+    const userId = nameIdentifierString ? Number(nameIdentifierString) : null;
     this.dialog.open(this.Create);
     this.createInviteForm.patchValue({
       inviteeId: inviteeId,
+      inviterId: userId,
       roomId: this.roomId,  // Assuming you have roomId available
       status: "Pending"
     });

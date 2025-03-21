@@ -12,7 +12,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { Observable, switchMap, of } from "rxjs";
+import { Observable, switchMap, of, forkJoin, map, catchError } from "rxjs";
 
 import {
   HttpClient,
@@ -41,10 +41,13 @@ export class MyInvitationsComponent implements OnInit {
   userId: any;
   roomsInfo?: any[] = [];
   usersInfo?: any[] = [];
-
+  roomName: any;
+  userName: any;
   combinedInfo?: any[];
   combinedInfoWithInvitations?: any[];
   invitationDetails: any;
+  private roomCache: { [key: number]: string } = {};
+  private userCach: { [key: number]: string } = {};
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog, private route: ActivatedRoute) { }
   ngOnInit(): void {
@@ -52,14 +55,15 @@ export class MyInvitationsComponent implements OnInit {
     this.userId = nameIdentifierString ? Number(nameIdentifierString) : null;
     this.getAllInvitations();
     this.filterInvitations();
-    this.fetchRoomDetails();
-    this.fetchInfoById();
-    this.combineRoomsAndUsers();
+    //this.fetchRoomDetails();
+    // this.fetchInfoById();
+    //this.combineRoomsAndUsers();
+    // this.combineRoomsUsersAndInvitations();
 
 
   }
 
-  getRoomById(roomId: number) {
+  getRoomById(roomId: number): Observable<any> {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('No token found in sessionStorage');
@@ -76,55 +80,51 @@ export class MyInvitationsComponent implements OnInit {
       { headers }
     );
   }
-  fetchRoomDetails(): void {
-    this.filteredInvitations?.forEach((invitation) => {
-      this.getRoomById(invitation.roomId).subscribe(
-        (roomResponse: any) => {
-          if (roomResponse && roomResponse.data) {
-            const room = {
-              id: roomResponse.data.id,
-              name: roomResponse.data.name,
-              description: roomResponse.data.description,
-              createdAt: roomResponse.data.createdAt,
-              creatorId: roomResponse.data.creatorId
+  getRoomName(roomId: number): Observable<string> {
+    // Check if room name is already cached
+    if (this.roomCache[roomId]) {
+      return of(this.roomCache[roomId]);
+    }
 
-            };
-            this.roomsInfo?.push(room); // Add room details to roomsInfo array
-          } else {
-            console.error('Unexpected room details structure:', roomResponse);
-          }
-        },
-        (error) => {
-          console.error(`Error fetching room details for roomId ${invitation.RoomId}:`, error);
-        }
-      );
-    });
+    return this.getRoomById(roomId).pipe(
+      map(response => {
+        const roomName = response?.data?.name || 'Unknown Room';
+        this.roomCache[roomId] = roomName;  // Cache the room name
+        return roomName;
+      }),
+      catchError(err => {
+        console.error('Error fetching room:', err);
+        return of('Error fetching room');
+      })
+    );
   }
-  fetchInfoById() {
-    this.roomsInfo?.forEach((room) => {
-      this.getUserById(room.creatorId).subscribe(
-        (response: any) => {
-          if (response && response.data) {
-            const user = {
-              id: response.data.id,
-              name: response.data.name,
-              email: response.data.email,
-              bio: response.data.bio,
 
 
-            };
-            this.usersInfo?.push(room); // Add room details to roomsInfo array
-          } else {
-            console.error('Unexpected user details structure:', response);
-          }
-        },
-        (error) => {
-          console.error(`Error fetching user details for roomId ${room.creatorId}:`, error);
-        }
-      );
-    });
+
+
+
+
+  getUserName(invitorId: any): Observable<string> {
+    // Check if room name is already cached
+    if (this.userCach[invitorId]) {
+      return of(this.userCach[invitorId]);
+    }
+
+    return this.getUserById(invitorId).pipe(
+      map(response => {
+        const userName = response?.data?.name || 'Unknown User';
+        this.userCach[invitorId] = userName;  // Cache the room name
+        return userName;
+      }),
+      catchError(err => {
+        console.error('Error fetching room:', err);
+        return of('Error fetching room');
+      })
+    );
   }
-  getUserById(creatorId: any) {
+
+
+  getUserById(creatorId: any): Observable<any> {
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('No token found in sessionStorage');
@@ -188,48 +188,8 @@ export class MyInvitationsComponent implements OnInit {
         }
       );
   }
-  combineRoomsAndUsers(): void {
-    this.combinedInfo = this.roomsInfo?.map(room => {
-      // Find the corresponding user based on the creatorId (room.creatorId)
-      const user = this.usersInfo?.find(user => user.id === room.creatorId);
 
-      // Combine the room and user properties into one object
-      if (user) {
-        return {
-          ...room,  // Spread room properties
-          creatorName: user.name,  // Add the user's name as creatorName
-          creatorEmail: user.email,  // Add the user's email as creatorEmail
-          creatorBio: user.bio,  // Add the user's bio as creatorBio
-        };
-      }
-      return room;  // Return room as-is if no corresponding user is found
-    });
 
-    console.log(this.combinedInfo); // Log the combined list for debugging
-  }
-  combineRoomsUsersAndInvitations(): void {
-    this.combinedInfoWithInvitations = this.combinedInfo?.map(room => {
-      // Find the corresponding invitation based on the roomId
-      const invitation = this.filteredInvitations?.find(invite => invite.roomId === room.id);
-
-      // Combine the room, user, and invitation properties into one object
-      if (invitation) {
-        return {
-          ...room,  // Spread room properties
-          creatorName: room.creatorName,  // User's name from combinedInfo
-          creatorEmail: room.creatorEmail,  // User's email from combinedInfo
-          creatorBio: room.creatorBio,  // User's bio from combinedInfo
-          invitationStatus: invitation.status,  // Invitation status
-          invitationCreatedAt: invitation.createdAt,  // Invitation created date
-          invitationUpdatedAt: invitation.updatedAt,// Invitation updated date
-          invitationId: invitation.id
-        };
-      }
-      return room;  // Return room as-is if no corresponding invitation is found
-    });
-
-    console.log(this.combinedInfoWithInvitations); // Log the combined list for debugging
-  }
 
 
 

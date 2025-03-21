@@ -14,24 +14,24 @@
             <div class="invitations-list-column">
               <div class="invitation-list">
                 <!-- Invitation Items -->
-                <div class="invitation-item" *ngFor="let invite of combinedInfoWithInvitations; let i = index">
+                <div class="invitation-item" *ngFor="let invite of filteredInvitations let i = index">
                   <div class="invitation-content">
                     <div class="invitation-with-pic">
                       <div class="invitation-details">
-                        <div class="room-name">{{ invite.name }}</div>
+                        <div class="room-name">{{ getRoomName(invite.roomId) | async }}</div>
                         <div class="invited-by">
-                          Invited by {{ invite.creatorName }}
+                          Invited by {{ getUserName(invite.inviterId)|async }}
                         </div>
                       </div>
                     </div>
-                    <div class="invitation-time">{{ invite.description }}</div>
+                    <div class="invitation-time">{{ invite.createdAt }}</div>
                   </div>
 
                   <!-- Actions Column -->
                   <div class="actions-column">
                     <div class="actions-container">
                       <div class="action-buttons" [ngClass]="{ 'second-action': i > 0 }">
-                        <button class="accept-button" (click)="acceptInvitation(invite.invitationId)">
+                        <button class="accept-button" (click)="acceptInvitation(invite.id)">
                           <span>Accept</span>
                         </button>
                         <!--<button class="reject-button" (click)="rejectInvitation(invite.invitationId)">

@@ -127,6 +127,6 @@ export class SignInComponent implements OnInit {
 
 
   navigateToRegister(): void {
-    this.router.navigate(["/auth/sign-up"]);
+    this.router.navigate(["sign-up"]);
   }
 }
