@@ -96,7 +96,7 @@ export class SignUpComponent implements OnInit {
       // Get the form values and send them as a POST request
       const postData = this.signUpForm.value;  // This extracts the data from the form group
 
-      this.http.post('http://hackathon-ramadan.runasp.net/api/Users/Create', postData)
+      this.http.post('https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Users/Create', postData)
         .subscribe(
           (response) => {
             this.responseData = response;
