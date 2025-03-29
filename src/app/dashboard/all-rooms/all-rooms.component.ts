@@ -37,7 +37,7 @@ export class AllRoomsComponent implements OnInit {
   createRoomForm!: FormGroup;
   allRooms: any[] = [];
   filteredRooms: any[] = [];
-  private apiUrl = 'http://hackathon-ramadan.runasp.net/api/Rooms/CreateRoom';
+  private apiUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/CreateRoom';
   updatedRooms: any[] | undefined;
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog, private route: ActivatedRoute) {
@@ -80,7 +80,7 @@ export class AllRoomsComponent implements OnInit {
   }
   getAllRooms(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Rooms/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/GetAll",
 
     );
 

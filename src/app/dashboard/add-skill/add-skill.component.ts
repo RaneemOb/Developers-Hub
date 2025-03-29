@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 export class AddSkillComponent implements OnInit {
   allskills: any[] | undefined;
   selectedskill?: number;
-  private apiUrl = 'http://hackathon-ramadan.runasp.net/api/Skills/AddUserSkill';
+  private apiUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/AddUserSkill';
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router) { }
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class AddSkillComponent implements OnInit {
   }
   getAllSkills(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
     );
   }
 

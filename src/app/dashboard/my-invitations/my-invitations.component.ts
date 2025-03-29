@@ -76,7 +76,7 @@ export class MyInvitationsComponent implements OnInit {
     });
 
     return this.http.get<any>(
-      `http://hackathon-ramadan.runasp.net/api/Rooms/GetById/${roomId}`,
+      `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/GetById/${roomId}`,
       { headers }
     );
   }
@@ -137,7 +137,7 @@ export class MyInvitationsComponent implements OnInit {
     });
 
     return this.http.get<any>(
-      `http://hackathon-ramadan.runasp.net/api/Users/GetById/${creatorId}`,
+      `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Users/GetById/${creatorId}`,
       { headers }
     );
   }
@@ -159,7 +159,7 @@ export class MyInvitationsComponent implements OnInit {
       'Content-Type': 'application/json'
     });
 
-    this.http.get<any[]>(`http://hackathon-ramadan.runasp.net/api/Invitations/GetAll`, { headers })
+    this.http.get<any[]>(`https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Invitations/GetAll`, { headers })
       .subscribe(
         (response: any) => {
           if (response && response.data && response.data.length > 0) {
@@ -212,7 +212,7 @@ export class MyInvitationsComponent implements OnInit {
       status: 'Accepted',
       updatedAt: new Date().toISOString() // Optional: Update timestamp
     };
-    const url = `http://hackathon-ramadan.runasp.net/api/Invitations/Update/${invitationId}`;
+    const url = `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Invitations/Update/${invitationId}`;
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
@@ -228,7 +228,7 @@ export class MyInvitationsComponent implements OnInit {
     );
   }
   getInvitationById(id: number): void {
-    const url = `http://hackathon-ramadan.runasp.net/api/Invitations/GetById/${id}`;
+    const url = `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Invitations/GetById/${id}`;
     const token = sessionStorage.getItem('token');
     if (!token) {
       console.error('No token found in sessionStorage');

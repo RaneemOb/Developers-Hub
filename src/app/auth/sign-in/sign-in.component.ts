@@ -22,8 +22,8 @@ export class SignInComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword = false;
   userId: any;
-  private skillsUrl = 'http://hackathon-ramadan.runasp.net/api/Skills/GetUserSkills/';
-  private loginUrl = 'http://hackathon-ramadan.runasp.net/api/Auth/LoginUserByEmailAndPassword';
+  private skillsUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/GetUserSkills/';
+  private loginUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Auth/LoginUserByEmailAndPassword';
   constructor(
     private fb: FormBuilder,
     private router: Router,

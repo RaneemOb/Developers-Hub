@@ -27,7 +27,7 @@ export class OpenSourceSuggestionPageComponent implements OnInit {
     { label: "Bot Message", content: "Project overview" },
   ];
   userId: any;
-  private apiUrl = 'http://hackathon-ramadan.runasp.net/api/AiIntegration';
+  private apiUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/AiIntegration';
   ngOnInit(): void {
     const nameIdentifierString = sessionStorage.getItem('nameidentifier');
 
@@ -51,7 +51,7 @@ export class OpenSourceSuggestionPageComponent implements OnInit {
     );
   }
 
-  
+
   // this for test delete it after test
 
   //     this.suggestions = `<!DOCTYPE html>
@@ -113,7 +113,7 @@ export class OpenSourceSuggestionPageComponent implements OnInit {
   // </html>`;
 
 
-  constructor(private http: HttpClient,private sanitizer: DomSanitizer) { }
+  constructor(private http: HttpClient, private sanitizer: DomSanitizer) { }
 
   public getSuggestion(userId: number, message: string | null = null): Observable<string> {
     const token = sessionStorage.getItem('token'); // Get token from sessionStorage
@@ -135,7 +135,7 @@ export class OpenSourceSuggestionPageComponent implements OnInit {
 
     // Send POST request with body containing message and get response as text
     return this.http.post(url, body, { headers, responseType: 'text' as 'json' }).pipe(
-      tap((response:any) => {
+      tap((response: any) => {
         console.log('Received response:', response);  // This will now log the raw HTML
       }),
       catchError((error) => {

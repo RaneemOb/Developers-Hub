@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
   }
   getAllSkills(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
     );
   }
 

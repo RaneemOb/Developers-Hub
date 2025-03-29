@@ -135,16 +135,16 @@ export class MainComponent implements OnInit {
 
   getAllDevelopers(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Users/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Users/GetAll",
     );
   }
   getAllSkills(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/GetAll",
     );
   }
   getUserInfo(skillId: number) {
-    this.http.get<any>(`http://hackathon-ramadan.runasp.net/api/Skills/GetSkilledUsers/${skillId}`).subscribe(
+    this.http.get<any>(`https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Skills/GetSkilledUsers/${skillId}`).subscribe(
       (response: any) => {
         console.log(response); // Log the entire response to see the structure
         this.filteredDevelopers = response.data; // Access the 'data' array from the response
@@ -170,7 +170,7 @@ export class MainComponent implements OnInit {
   }
   getAllRooms(): Observable<any[]> {
     return this.http.get<any[]>(
-      "http://hackathon-ramadan.runasp.net/api/Rooms/GetAll",
+      "https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/GetAll",
 
     );
 
@@ -222,7 +222,7 @@ export class MainComponent implements OnInit {
     });
 
     // Send the POST request to the specified URL
-    const url = 'http://hackathon-ramadan.runasp.net/api/Invitations/Create';
+    const url = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Invitations/Create';
 
     this.http.post(url, inviteData, { headers })
       .subscribe(

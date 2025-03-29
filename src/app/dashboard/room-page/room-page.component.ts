@@ -35,17 +35,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   imports: [MatCardModule, CommonModule, ReactiveFormsModule, SidebarComponent, FormsModule, HttpClientModule, MatFormFieldModule, MatInputModule],
 })
 export class RoomPageComponent implements OnInit {
-  private apiUrl = 'http://hackathon-ramadan.runasp.net/api/AiIntegration';
+  private apiUrl = 'https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/AiIntegration';
   suggestions: SafeHtml | null = null;
   roomId: any;
   room: any;
   roomMembers: any = [];
-  UsersInfo : any = [];
+  UsersInfo: any = [];
   constructor(private fb: FormBuilder, private http: HttpClient,
     private cdRef: ChangeDetectorRef, private router: Router, public dialog: MatDialog,
-    private route: ActivatedRoute,private sanitizer: DomSanitizer) { }
+    private route: ActivatedRoute, private sanitizer: DomSanitizer) { }
 
-   
+
 
   suggestProjectForRoom() {
     if (this.roomId == null || this.roomId === undefined) {
@@ -63,7 +63,7 @@ export class RoomPageComponent implements OnInit {
       }
     );
   }
-public getRoomSuggestion(roomId: number, message: string | null = null): Observable<string> {
+  public getRoomSuggestion(roomId: number, message: string | null = null): Observable<string> {
     const token = sessionStorage.getItem('token'); // Get token from sessionStorage
 
     if (!token) {
@@ -83,7 +83,7 @@ public getRoomSuggestion(roomId: number, message: string | null = null): Observa
 
     // Send POST request with body containing message and get response as text
     return this.http.post(url, body, { headers, responseType: 'text' as 'json' }).pipe(
-      tap((response:any) => {
+      tap((response: any) => {
         console.log('Received response:', response);  // This will now log the raw HTML
       }),
       catchError((error) => {
@@ -129,9 +129,9 @@ public getRoomSuggestion(roomId: number, message: string | null = null): Observa
             email: member.email,
             bio: member.bio
           }));
-    
-          console.log("room members :",this.roomMembers);  // Log the mapped room members
-    
+
+          console.log("room members :", this.roomMembers);  // Log the mapped room members
+
         } else {
           console.error("Unexpected response structure:", response);
         }
@@ -147,18 +147,18 @@ public getRoomSuggestion(roomId: number, message: string | null = null): Observa
       console.error('No token found in sessionStorage');
       return of(null);  // You might want to handle this case properly.
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-  
+
     return this.http.get<any>(
-      `http://hackathon-ramadan.runasp.net/api/Rooms/GetById/${roomId}`,
+      `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/GetById/${roomId}`,
       { headers }
     );
   }
-  
+
   // Get Room Members
   getRoomMembers(roomId: number) {
     const token = sessionStorage.getItem('token');
@@ -166,18 +166,18 @@ public getRoomSuggestion(roomId: number, message: string | null = null): Observa
       console.error('No token found in sessionStorage');
       return of([]);  // Handle appropriately
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-  
+
     return this.http.get<any[]>(
-      `http://hackathon-ramadan.runasp.net/api/Rooms/GetUsersDetailsDataInRoomByRoomId/${roomId}`,
+      `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Rooms/GetUsersDetailsDataInRoomByRoomId/${roomId}`,
       { headers }
     );
   }
-  
+
   // Get User Info by ID
   getUserInfoById(userId: number) {
     const token = sessionStorage.getItem('token');
@@ -185,14 +185,14 @@ public getRoomSuggestion(roomId: number, message: string | null = null): Observa
       console.error('No token found in sessionStorage');
       return of(null);   // Handle appropriately
     }
-  
+
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-  
+
     return this.http.get<any>(
-      `http://hackathon-ramadan.runasp.net/api/Users/GetById/${userId}`,
+      `https://api.allorigins.win/raw?url=http://hackathon-ramadan.runasp.net/api/Users/GetById/${userId}`,
       { headers }
     );
   }
